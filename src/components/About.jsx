@@ -24,7 +24,7 @@ export default function About() {
                         transition={{ duration: 0.8, ease: 'easeOut' }}
                     >
                         <div className="about__image-wrap">
-                            <img src="/hero.png" alt="Susanne Sauter – Herzenssache" className="about__image" />
+                            <img src={`${import.meta.env.BASE_URL}hero.png`} alt="Susanne Sauter – Herzenssache" className="about__image" />
                             <div className="about__badge">
                                 <FiHeart size={22} />
                                 <span>Herzenssache seit 2024</span>

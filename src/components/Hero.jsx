@@ -6,7 +6,7 @@ export default function Hero() {
     return (
         <section id="hero" className="hero">
             <div className="hero__bg">
-                <img src="/hero.png" alt="Pflegende Hände in österreichischer Natur" className="hero__img" />
+                <img src={`${import.meta.env.BASE_URL}hero.png`} alt="Pflegende Hände in österreichischer Natur" className="hero__img" />
                 <div className="hero__overlay" />
             </div>
 
