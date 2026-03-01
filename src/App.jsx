@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './index.css'
 import './App.css'
 import Navbar from './components/Navbar'
@@ -8,8 +9,11 @@ import About from './components/About'
 import Area from './components/Area'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Impressum from './components/Impressum'
 
 export default function App() {
+  const [isImpressumOpen, setIsImpressumOpen] = useState(false)
+
   return (
     <>
       <Navbar />
@@ -21,7 +25,8 @@ export default function App() {
         <Area />
         <Contact />
       </main>
-      <Footer />
+      <Footer onOpenImpressum={() => setIsImpressumOpen(true)} />
+      <Impressum isOpen={isImpressumOpen} onClose={() => setIsImpressumOpen(false)} />
     </>
   )
 }

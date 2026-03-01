@@ -1,7 +1,7 @@
 import { FiHeart, FiPhone, FiMail } from 'react-icons/fi'
 import { Link } from 'react-scroll'
 
-export default function Footer() {
+export default function Footer({ onOpenImpressum }) {
     return (
         <footer className="footer">
             <div className="container">
@@ -24,6 +24,9 @@ export default function Footer() {
                                             : 'Kontakt'}
                             </Link>
                         ))}
+                        <button onClick={onOpenImpressum} className="footer__link footer__btn-link">
+                            Impressum
+                        </button>
                     </div>
 
                     <div className="footer__contact">

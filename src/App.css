@@ -677,7 +677,8 @@
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--white, #fff);
+  /* Fallback */
   margin-bottom: 0.75rem;
 }
 
@@ -691,6 +692,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  align-items: flex-start;
 }
 
 .footer__links-title {
@@ -710,46 +712,96 @@
   transition: var(--transition);
 }
 
+.footer__btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+}
+
 .footer__link:hover {
   color: var(--color-white);
 }
 
-.footer__contact {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.footer__contact-item {
+/* --- MODAL / IMPRESSUM --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 66, 52, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: var(--transition);
-  word-break: break-word;
+  justify-content: center;
+  padding: 1.5rem;
 }
 
-.footer__contact-item:hover {
+.modal-content {
+  background: var(--color-beige);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow-y: auto;
+  padding: 3rem 2rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--color-sand);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--color-primary);
+}
+
+.modal-close:hover {
+  background: var(--color-primary);
   color: var(--color-white);
 }
 
-.footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 2rem;
-  font-size: 0.825rem;
-  opacity: 0.6;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.impressum-body h1 {
+  margin-bottom: 2rem;
+  color: var(--color-primary-dark);
+}
+
+.impressum-body section {
+  margin-bottom: 2rem;
+}
+
+.impressum-body h2 {
+  font-size: 1rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.impressum-body p {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
 }
 
 /* =============================================
-   RESPONSIVE
+   RESPONSIVE REFINEMENTS
    ============================================= */
 @media (max-width: 900px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
   .navbar__links {
     display: none;
   }
@@ -775,8 +827,10 @@
   }
 
   .about__badge {
-    right: 1rem;
+    right: 0.5rem;
     bottom: -1rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.8rem;
   }
 
   .area__map-placeholder {
@@ -799,14 +853,29 @@
 }
 
 @media (max-width: 600px) {
+  :root {
+    --container-padding: 1.25rem;
+  }
 
-  .values__grid,
-  .services__grid {
-    grid-template-columns: 1fr;
+  .container {
+    padding: 0 var(--container-padding);
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
   }
 
   .hero__actions {
-    flex-direction: column;
+    width: 100%;
   }
 
   .hero__actions a {
@@ -814,16 +883,52 @@
     justify-content: center;
   }
 
+  .section-title {
+    font-size: 2.25rem;
+  }
+
+  .values,
+  .services,
+  .about,
+  .area,
+  .contact {
+    padding: 4rem 0;
+  }
+
+  .values__grid,
+  .services__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .about__inner,
+  .area__inner,
+  .contact__inner {
+    gap: 2.5rem;
+  }
+
+  .about__badge {
+    position: static;
+    margin-top: 1rem;
+    width: fit-content;
+  }
+
+  .contact__form-wrap {
+    padding: 1.5rem;
+  }
+
   .footer__inner {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
   .footer__bottom {
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
   }
 
-  .contact__form-wrap {
-    padding: 1.75rem;
+  .modal-content {
+    padding: 2.5rem 1.25rem 1.5rem;
   }
 }
